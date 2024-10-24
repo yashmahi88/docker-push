@@ -1,6 +1,6 @@
 name: Publish Image to docker hub
 
-on: [push]
+on: [workflow_dispatch]
 
 jobs:
     publish-image:
@@ -13,5 +13,6 @@ jobs:
                 docker build . -t yashmahi04/gitactions:latest
             - name: publish
               run: |
+                docker login -u yashmahi04 -p ${{ secrets.DOCKER_HUB_TOKEN }}
                 docker push yashmahi04/gitactions:latest
  
